@@ -146,12 +146,163 @@
             </code></li>
             <li>Afficher le contenu d'une table <code>SELECT * FROM t_utilisateurs</code></li>
         </ul>
+        <p><a class="btn btn-secondary" href="#suite" role="button">Autre requêtes</a></p>
+        
         <div class="col-md-6">
             <h2>Types données</h2>
 
         </div>
     </div>  <!-- row -->
-   
+
+    <div class="row">
+    <div class="row-col-md-12">
+      <h2>Les types de données</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Type de champ</th>
+            <th scope="col">Description</th>
+            <th scope="col">Contexte</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">VARCHAR</th>
+            <td>Chaine (jusqu'à 256 caractères)</td>
+            <td>Pour enregistrer un pseudo, un email, le titre d'un produit ou d'un article de blog</td>
+           
+          </tr>
+          <tr>
+            <th scope="row">TEXT</th>
+            <td>Chaine de caractère (illimité)</td>
+            <td>Pour un contenu textuel long, un article de blog</td>
+          
+          </tr>
+          <tr>
+            <th scope="row">INT</th>
+            <td>Numérique</td>
+            <td>Pour un identifiant, un prix, un code postal, le nombre de produits en stocks etc.</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">DATE</th>
+            <td>DATE</td>
+            <td>Pour d'un enregistrement (une inscription), d'une commande etc.</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">ENUM</th>
+            <td>Liste</td>
+            <td>Pour proposer une liste de termes, ex. "Madame", "Monsieur"</td>
+            
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+   </div> <!-- row -->
+
+   <div class="row">
+     <div class="class col-md-6">
+       <h2>Les identifiants (clé primaire - PK primary key)</h2>
+       <p>
+         Les identifiants sont des champs (colonnes) un peu particuliers car ils ne décrivent pas le sujet (ce n'est pas une des caractéristiques du sujet) mais ce
+         sont des colonnes (champs) systématiquement présent dans chaque table et ce en première position.
+         <p>
+           Chaque table possède une colonne (champ) identifiant. Nous appellerons cela une clé primaire (PK).
+           Par exemple, nous pourrons l'appeler "id" ou encore "idProduit" pour la table produit, et "idMembre" pour la table membre.
+         </p>
+         Il s'agit d'une liste numérotée permettant de différencier chaque enregistrement de manière unique.
+         Le produit "tshirt rouge" deviendra (par exemple) le produit n°396 "tshirt rouge".
+         Pour éviter de choisir le numéro et faire des erreurs nous demanderons à le générer automatiquement avec l'Auto_Increment.
+       </p>
+     </div>
+
+     <div class="class col-md-6">
+       <h2>Auto_Increment</h2>
+       <p>Auto_Increment est une option permettant de générer un numéro unique dans une colonne (champ) de type clé primaire (identifiant).</p>
+      <p>Par conséquent, retenez bien que le 1er champ de chaque table sera systématiquement un "id" qui sera PK (Primary Key) et AI (Auto_Increment).</p>
+     </div>
+   </div> <!-- row -->
+   <div class="row">
+     <div class="row col-md-6">
+        <h2>NULL / NOT NULL</h2>
+        <p>Dans un chaque champ, nous pourrons indiquer si nous acceptons les valeurs NULL ou non (NOT NULL).</p>
+        <p>NULL est un type de valeur en informatique évitant de laisser un champ vide si nous n'avons pas d'infos à y déposer.</p>
+     </div>
+     <div class="row col-md-6">
+        <h2>Les rélations</h2>
+        <p>Il arrive parfois que les sujets interagissent entre eux</p>
+        <p>Exemple : 1 membre commande 1 produit (ou 1 produit est commandé par 1 membre), nous devrons enregistrer l'information dans 1 table commande.</p>
+        <p>Autre exemple : 1 conducteur conduit 1 véhicule (ou 1 véhicule est conduit par 1 conducteur). il nous faudra une table permettant de préciser quel	conducteur va avec quel véhicule.</p>
+     </div>
+   </div> <!-- row -->
+
+   <div class="row">
+     <div class="col-md-6">
+       <h2>Les cardinalités</h2>
+       <p>Exemple : 1 livre possède forcément 1 auteur et qu'1 seul. Relation (1,1). Minimum 1 auteur, Maximum 1 auteur.</p>
+      <p>1 auteur peut avoir écrit plusieurs livre (ou aucun). Relation (0,n). Minimum 0 livre, Maximum N livres</p>
+      <p>Dans cet exemple une table auteurs et une table livres suffisent : nous n'avons pas besoin de table de jointure</p>
+     </div>
+     <div class="col-md-6">
+       <h2></h2>
+     </div>
+   </div><!-- row -->
+   <div class="row" id="suite">
+     <div class="col-md-12 br-light">
+       <h2>Les requêtes (suite)</h2>
+       <ul>
+         <li>Afficher et trier : ORDER BY <code>SELECT * FROM employes ORDER BY nom ASC </code></li>
+         <li>condition : WHERE (à condition que) <code>SELECT nom, prenom FROM employes WHERE service='informatique'</code></li>
+         <li>le mot clef : BETWEEN (entre) <code>SELECT nom, prenom date_embauche FROM employes WHERE date_embauche BETWEEN '2006-01-01' AND '2010-12-31'</code></li>
+         <li>Une fonction prédéfinies avec ses parenthèses : CURDATE() (date courante) <code>SELECT nom, prenom date_embauche FROM employes WHERE date_embauche BETWEEN '2006-01-01' AND CURDATE()</code></li>
+         <li>le mot clef : LIKE <code>SELECT prenom FROM employes WHERE prenom LIKE '%'</code> ou <code>SELECT prenom FROM employes WHERE prenom LIKE '%-%'</code></li>
+         <li>= "est égal"</li>
+         <li>> "strictement supérieur, >= "supérieur ou égal</li>
+         <li>< "strictement inférieur, <= "inférieur ou égal</li>
+         <li> ou != "est different" <code>SELECT nom, prenom, service FROM employes WHERE service!="informatique"</code></li>
+         <li>...</li>
+         <li>Limiter les résultats : LIMIT <code>SELECT nom, prenom, service, salaire FROM employes ORDER BY salaire DESC LIMIT 0,3<code><span class="small">(le 1er chiffre précise l'enregistrement de départ, le 2nd chiffre indique le nbr de résultats)</span></code></li>
+         <li class="bg-secondary w-25">Limiter</li>
+         <li>Faire des calculs <code>SELECT nom, prenom, salaire*12 FROM employes</code></li>
+         <li>le mot clef AS permet de définir un ALIAS : <code>SELECT nom, prenom, salaire*12 AS salaire_annuel FROM employes</code></li>
+         <li>Somme d'une colonne avec SUM() : <code>SELECT SUM (salaire*12) FROM employes</code></li>
+         <li>Calculer une moyenne avec AVG() <code>SELECT AVG (salaire) FROM employes</code></li>
+         <li>Arrondir un résultat avec ROUND() : <code>SELECT ROUND(AVG(salaire)) FROM employes</code></li>
+         <li>Compter avec COUNT(*) : <code>SELECT COUNT(*) FROM employes WHERE sexe='f'</code></li>
+       </ul>
+       <hr>
+       <h2>Requêtes imbriquées</h2>
+       <ul>
+        <li>Isoler une valeur minimum/maximum avec MIN() ou MAX() : <code>SELECT MIN(salaire) FROM employes</code></li>
+        <li>Requêtes imbriquées <code>SELECT prenom, salaire FROM employes WHERE salaire = (SELECT MIN(salaire) FROM employes)</code></li>
+       </ul>
+       <h5 class="bg-primary w-50">Conditions multiples</h5>
+       <ul>
+         <li>Avec plusieurs valeurs avec le mot clef IN : <code>SELECT nom, prenom, service FROM employes WHERE 
+           service IN('informatique', 'comptabilité')</code></li>
+         <li>Avec le mot clef NOT IN : <code>SELECT nom, prenom, service FROM employes WHERE service NOT IN('informatique', 'comptabilité')</code>
+           <span class="small">!= permet d'exclure une seule valeur // NOT IN permet d'exclure plusieurs valeurs </span></li>
+           <li>Plusieurs conditions avec differents champs et differentes valeurs :<code>SELECT nom, prenom, service FROM employes WHERE service='commercial'
+            AND salaire<=2000</code>
+         <li>Ordre de priorité sur les conditions NAD et OR : <code>SELECT nom, prenom, service, salaire FROM employes WHERE service = 'production' 
+           AND (salaire = 1900 OR = 2300</code> <span class="small font-italic">pour garantir l'ordre naturel de lecture (de la gauche vers la droite). nous utiliserons des parenthèses</span></li>
+         <li>Les regroupements avec GROUP BY : <code>SELECT service, COUNT(*) AS nombre FROM employes GROUP BY service </code></li>
+         <li>regroupement avec une condition HAVING COUNT(): <code>SELECT service, COUNT(*) AS nombre FROM employes GROUP BY service HAVING COUNT(*)</code></li>
+       </ul>
+     </div>
+   </div> <!-- row -->
+   <div class="row mt-4 mb-4">
+		<div class="col-md-12">
+			<h5>Requêtes d'insertion</h5>
+			<ul>
+				<li>INSERT : <code>INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES ('alexis', 'richy', 'm', 'informatique', '2011-12-28', 1800);</code></li>
+				<li>INSERT (autre methode) : <code>INSERT INTO employes VALUES(NULL, 'samia', 'ouali', 'f', 'informatique', '2020-01-28', 2500) </code></li>
+			</ul>
+		</div>
+	</div><!-- /row -->
 
   </div> <!-- /container -->
 
